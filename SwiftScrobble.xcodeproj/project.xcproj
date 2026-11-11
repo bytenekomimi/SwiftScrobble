@@ -11,8 +11,27 @@
     ],
   },
   "files": [
-    { "kind": "folder", "path": "SwiftScrobble", "target-membership": [ "SwiftScrobble" ] },
     {
+      "kind": "folder",
+      "path": "SwiftScrobble",
+      "target-membership": [
+        "SwiftScrobble",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "SwiftScrobble",
+          "exclusions": [
+            "Config/LastFMConfig.swift.bak",
+            "Info.plist",
+          ],
+        }, {
+          "build-phase": "SwiftScrobble/compile-sources",
+          "inclusions": [
+            "Config/LastFMConfig.swift.bak",
+          ],
+        },
+      ],
+    }, {
       "kind": "group",
       "name": "Products",
       "children": [
@@ -34,20 +53,25 @@
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+        "CODE_SIGN_IDENTITY[sdk=macosx*]": "-",
         "CODE_SIGN_STYLE": "Automatic",
         "COMBINE_HIDPI_IMAGES": "YES",
         "CURRENT_PROJECT_VERSION": "1",
         "DEVELOPMENT_TEAM": "M345ZXKBHK",
-        "ENABLE_APP_SANDBOX": "YES",
+        "ENABLE_APP_SANDBOX": "NO",
         "ENABLE_HARDENED_RUNTIME": "YES",
         "ENABLE_PREVIEWS": "YES",
-        "ENABLE_USER_SELECTED_FILES": "readonly",
         "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "SwiftScrobble/Info.plist",
+        "INFOPLIST_KEY_LSApplicationCategoryType": "public.app-category.utilities",
+        "INFOPLIST_KEY_LSUIElement": "YES",
+        "INFOPLIST_KEY_NSAppleEventsUsageDescription": "SwiftScrobbler needs access to Apple Music to detect playback and scrobble tracks.",
         "INFOPLIST_KEY_NSHumanReadableCopyright": "",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/../Frameworks",
         ],
+        "MACOSX_DEPLOYMENT_TARGET": "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)",
         "MARKETING_VERSION": "1.0",
         "PRODUCT_BUNDLE_IDENTIFIER": "dev.byteneko.SwiftScrobble",
         "PRODUCT_NAME": "$(TARGET_NAME)",
@@ -120,6 +144,7 @@
     "MTL_ENABLE_DEBUG_INFO[config=Release]": "NO",
     "MTL_FAST_MATH": "YES",
     "ONLY_ACTIVE_ARCH[config=Debug]": "YES",
+    "ONLY_ACTIVE_ARCH[config=Release]": "NO",
     "SDKROOT": "macosx",
     "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]": "DEBUG $(inherited)",
     "SWIFT_COMPILATION_MODE[config=Release]": "wholemodule",
